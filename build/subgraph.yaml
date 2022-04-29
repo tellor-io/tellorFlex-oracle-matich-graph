@@ -1,0 +1,48 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: matic
+    source:
+      address: "0xFd45Ae72E81Adaaf01cC61c8bCe016b7060DD537"
+      abi: Contract
+      startBlock: 23641864
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - NewGovernanceAddress
+        - NewReport
+        - NewReportingLock
+        - NewStakeAmount
+        - NewStaker
+        - ReporterSlashed
+        - StakeWithdrawRequested
+        - StakeWithdrawn
+        - ValueRemoved
+      abis:
+        - name: Contract
+          file: Contract/abis/Contract.json
+      eventHandlers:
+        - event: NewGovernanceAddress(address)
+          handler: handleNewGovernanceAddress
+        - event: NewReport(bytes32,uint256,bytes,uint256,bytes,address)
+          handler: handleNewReport
+        - event: NewReportingLock(uint256)
+          handler: handleNewReportingLock
+        - event: NewStakeAmount(uint256)
+          handler: handleNewStakeAmount
+        - event: NewStaker(address,uint256)
+          handler: handleNewStaker
+        - event: ReporterSlashed(address,address,uint256)
+          handler: handleReporterSlashed
+        - event: StakeWithdrawRequested(address,uint256)
+          handler: handleStakeWithdrawRequested
+        - event: StakeWithdrawn(address)
+          handler: handleStakeWithdrawn
+        - event: ValueRemoved(bytes32,uint256)
+          handler: handleValueRemoved
+      file: Contract/Contract.wasm
