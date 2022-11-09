@@ -1,8 +1,6 @@
 import {
   Contract,
-  NewGovernanceAddress,
   NewReport,
-  NewReportingLock,
   NewStakeAmount,
   NewStaker,
   ReporterSlashed,
@@ -12,7 +10,7 @@ import {
 } from "../generated/Contract/Contract"
 import { NewReportEntity } from "../generated/schema"
 
-export function handleNewGovernanceAddress(event: NewGovernanceAddress): void {
+//export function handleNewGovernanceAddress(event: NewGovernanceAddress): void {
   // Note: If a handler doesn't require existing field values, it is faster
   // _not_ to load the entity from the store. Instead, create it fresh with
   // `new Entity(...)`, set the fields that should be updated and save the
@@ -53,7 +51,7 @@ export function handleNewGovernanceAddress(event: NewGovernanceAddress): void {
   // - contract.timeOfLastNewValue(...)
   // - contract.token(...)
   // - contract.totalStakeAmount(...)
-}
+//}
 
 export function handleNewReport(event: NewReport): void {
   let report = new NewReportEntity(event.block.timestamp.toHex());
@@ -73,7 +71,7 @@ export function handleNewReport(event: NewReport): void {
   report.save()
 }
 
-export function handleNewReportingLock(event: NewReportingLock): void {}
+//export function handleNewReportingLock(event: NewReportingLock): void {}
 
 export function handleNewStakeAmount(event: NewStakeAmount): void {}
 
